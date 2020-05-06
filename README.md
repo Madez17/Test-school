@@ -1,1 +1,2 @@
-# Test-school
+# College platform
+
