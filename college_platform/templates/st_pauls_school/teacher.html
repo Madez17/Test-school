@@ -1,0 +1,31 @@
+{% load material_form %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test</title>
+    {% include 'material/includes/material_css.html' %}
+</head>
+<body>
+    <div class="container">
+        {% block title %}
+        {{ courses.student }}
+        {% endblock %}
+        <h1>Welcome Teacher {{ course.name }}</h1>
+
+        <!-- <h1>{{ test }}</h1> -->
+
+        <form method="POST">
+            {% csrf_token %}
+            {% form form=form %}
+            <input method = POST/>
+            {% endform %}
+            <button type="submit" name="_submit" class="btn">Submit</button>
+        </form>
+    </div>
+    
+</body>
+
+{% include 'material/includes/material_js.html' %}
+</html>

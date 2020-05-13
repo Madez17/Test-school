@@ -1,0 +1,15 @@
+{% extends "st_pauls_school/base.html" %}
+
+{% block head_content %}
+    <title>College Login</title>
+{% endblock %}
+    
+
+{% block container %}
+    <h1>Welcome to the St.Paul's School</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" name="_submit" class="btn">Submit</button>
+    </form>
+{% endblock%}

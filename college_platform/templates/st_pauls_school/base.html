@@ -1,0 +1,18 @@
+{% load material_form %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block head_content %}{% endblock %}
+    {% include 'material/includes/material_css.html' %}
+
+</head>
+<body>
+    <div class="container m5">
+        {% block container %}
+        {% endblock%}
+    </div>
+
+</body>
+{% include 'material/includes/material_js.html' %}
+</html>
