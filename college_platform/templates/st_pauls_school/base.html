@@ -1,14 +1,19 @@
 {% load material_form %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    {% block head_content %}{% endblock %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base.css' %}">
     {% include 'material/includes/material_css.html' %}
+    {% block head_content %}{% endblock %}
 
 </head>
 <body>
     <div class="container m5">
+        <div class="center-align">
+            <img  src="{% static 'imgs/Logo.png' %}" alt="Logo school">
+        </div>
         {% block container %}
         {% endblock%}
     </div>

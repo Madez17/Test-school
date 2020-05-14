@@ -12,29 +12,41 @@ class TeacherForm(forms.ModelForm):
             'password' : forms.PasswordInput(attrs={'placeholder' : 'password', 'name': 'password'})
         }
 
-    def clean_email(self):
+    def validate_email(self):
         email = self.cleaned_data.get('email')
         for instance in Teacher.objects.all():
             if instance.email == email:
-                print('Si es correcto')
                 return email
-            else:
-                print('Este no es su email registrado')
+        raise forms.ValidationError('This user is not register' + email)
+
+    def validate_password(self):
+        password = self.cleaned_data.get('password')
+        for instance in Teacher.objects.all():
+            if instance.password == password:
+                return password
+        raise forms.ValidationError('Wrong Password')
 
 
 
-                
-        # print(Teacher.objects.filter(email='maf@gma.com'))
-        # if email == Teacher.objects.filter(email='maf@gma.com'):
-        #     print('EsTE CORREO EXISTE')
+class StudentForm(forms.ModelForm):
+    class Meta:
+        model = Student
+        fields = ['email', 'password']
+        widgets = {
+            'email' : forms.TextInput(attrs={'placeholder' : 'Email', 'name' : "email"}),
+            'password' : forms.PasswordInput(attrs={'placeholder' : 'password', 'name': 'password'})
+        }
 
-    # def clean_password(self):
-    #     email = self.cleaned_data.get('password')
-    #     password = cleaned_data.get("password")
-    #     if password != password:
-    #         print('Esta no es su password')
-    #         raise forms.ValidationError(
-    #             "password and confirm_password does not match"
-    #         )
-    #     else:
-    #         print('esto es correcto password')
+    def validate_email(self):
+        email = self.cleaned_data.get('email')
+        for instance in Student.objects.all():
+            if instance.email == email:
+                return email
+        raise forms.ValidationError('This user is not register' + email)
+
+    def validate_password(self):
+        password = self.cleaned_data.get('password')
+        for instance in Student.objects.all():
+            if instance.password == password:
+                return password
+        raise forms.ValidationError('Wrong Password')

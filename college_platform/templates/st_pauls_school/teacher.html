@@ -1,31 +1,15 @@
-{% load material_form %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test</title>
-    {% include 'material/includes/material_css.html' %}
-</head>
-<body>
-    <div class="container">
-        {% block title %}
-        {{ courses.student }}
-        {% endblock %}
-        <h1>Welcome Teacher {{ course.name }}</h1>
+{% extends "st_pauls_school/base.html" %}
 
-        <!-- <h1>{{ test }}</h1> -->
-
-        <form method="POST">
-            {% csrf_token %}
-            {% form form=form %}
-            <input method = POST/>
-            {% endform %}
-            <button type="submit" name="_submit" class="btn">Submit</button>
-        </form>
-    </div>
+{% block head_content %}
+    <title>College Login</title>
+{% endblock %}
     
-</body>
 
-{% include 'material/includes/material_js.html' %}
-</html>
+{% block container %}
+    <h1>Welcome to the St.Paul's School</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" name="_submit" class="btn">Submit</button>
+    </form>
+{% endblock%}

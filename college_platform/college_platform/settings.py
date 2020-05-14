@@ -132,3 +132,7 @@ SITE_ID = 1
 STATIC_URL = '/static/'
 
 LOGIN_REDIRECT_URL = "st_pauls_school/teacher/"
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+]

@@ -28,12 +28,11 @@ class Teacher(models.Model):
     id = models.AutoField(primary_key = True)
     name = models.CharField('Name', max_length = 200, blank = False, null = False)
     last_name = models.CharField('Last Name', max_length = 200, blank = False, null = False)
-    email = models.CharField('Email', max_length = 200, blank = False, null = False)
-    password = models.EmailField('password', max_length = 200, blank = False, null = False)
-    fecha_creacion = models.DateField('Fecha de creación', auto_now = True, auto_now_add = False)
+    email = models.EmailField('Email', max_length = 200, blank = False, null = False)
+    password = models.CharField('password', max_length = 200, blank = False, null = False)
     course_id = models.OneToOneField(Course, on_delete = models.CASCADE)
     subject_id = models.OneToOneField(Subject, on_delete = models.CASCADE)
-    objects = models.Manager()
+    # objects = models.Manager()
 
     class Meta:
         verbose_name = 'Teacher'
@@ -49,7 +48,6 @@ class Student(models.Model):
     last_name = models.CharField('Last Name', max_length = 200, blank = False, null = False)
     email = models.EmailField('Email', max_length = 200, blank = False, null = False)
     password = models.CharField('password', max_length = 200, blank = False, null = False)
-    fecha_creacion = models.DateField('Fecha de creación', auto_now = True, auto_now_add = False)
     course_id = models.ForeignKey(Course, on_delete = models.CASCADE, default = "")
     subjects = models.ManyToManyField(Subject, through = 'SubjectStudent')
 

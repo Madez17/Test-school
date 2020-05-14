@@ -6,10 +6,7 @@
     
 
 {% block container %}
-    <h1>Welcome to the St.Paul's School</h1>
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" name="_submit" class="btn">Submit</button>
-    </form>
+    <h1>Welcome to our platform, Notes management</h1>
+    <a href="teacher/" class="btn">Teacher</a>
+    <a href="student/" class="btn">Student</a>
 {% endblock%}

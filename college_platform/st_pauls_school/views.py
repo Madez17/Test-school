@@ -1,35 +1,37 @@
 from django.db import models
 from django.shortcuts import render, redirect
-from django.http import HttpResponseRedirect
-from django.contrib.auth import authenticate, login
 from .models import Teacher, Student
-from .forms import TeacherForm
-from django.views import generic
+from .forms import TeacherForm, StudentForm
 
+#Home
 def index(request):
-    form = TeacherForm()
-    if request.method == 'POST':
-        form = TeacherForm(request.POST)
-        if form.is_valid():
-            return HttpResponseRedirect('st_pauls_school/teacher')
-        else:
-            form = TeacherForm()
-    return render(request, 'st_pauls_school/index.html', {'form': form})
+    return render(request, 'st_pauls_school/index.html')
+    
+# Teacher
+def Teachers(request):
+    form = TeacherForm(request.POST or None)
+    # user_email = request.POST['email']
 
-def Teacher(request):
-    # test = models.Teacher.objects.get(name='Mafe')
-    # return render(request, 'st_pauls_school/teacher.html', {'test': test})
-    return render(request, 'st_pauls_school/teacher.html')
+    # user_email = request.POST.get("email")
+    # test = Teacher.objects.filter(email=user_email)
+    # print(test)
+    
+    if form.is_valid():
+        return redirect('dashboard/')
+    return render(request, 'st_pauls_school/teacher.html', {'form': form})
 
-def Student(request):
-    return render(request, 'st_pauls_school/student.html')
 
-# def createTeacher(request):
-#     if request.method == 'POST':
-#         teacher_form = TeacherForm(request.POST)
-#         if teacher_form.is_valid():
-#             teacher_form.save()
-#             return redirect('index')
-#     else:
-#         teacher_form = TeacherForm()
-#     return render(request, 'st_pauls_school/create_teacher.html', {'teacher_form':teacher_form})
+# Teacher Dasboard view
+def TeacherDasboard(request):
+    test = Teacher.objects.all()
+    return render(request, 'st_pauls_school/tdashboard.html', {'test': test})
+
+
+# Student view
+def StudentForm(request):
+    form = StudentForm(request.POST or None)
+    if form.is_valid():
+        return redirect('/')
+    return render(request, 'st_pauls_school/student.html', {'form': form})
+
+
