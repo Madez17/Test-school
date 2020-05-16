@@ -12,14 +12,14 @@ class TeacherForm(forms.ModelForm):
             'password' : forms.PasswordInput(attrs={'placeholder' : 'password', 'name': 'password'})
         }
 
-    def validate_email(self):
+    def clean_email(self):
         email = self.cleaned_data.get('email')
         for instance in Teacher.objects.all():
             if instance.email == email:
                 return email
         raise forms.ValidationError('This user is not register' + email)
 
-    def validate_password(self):
+    def clean_password(self):
         password = self.cleaned_data.get('password')
         for instance in Teacher.objects.all():
             if instance.password == password:
@@ -37,14 +37,14 @@ class StudentForm(forms.ModelForm):
             'password' : forms.PasswordInput(attrs={'placeholder' : 'password', 'name': 'password'})
         }
 
-    def validate_email(self):
+    def clean_email(self):
         email = self.cleaned_data.get('email')
         for instance in Student.objects.all():
             if instance.email == email:
                 return email
         raise forms.ValidationError('This user is not register' + email)
 
-    def validate_password(self):
+    def clean_password(self):
         password = self.cleaned_data.get('password')
         for instance in Student.objects.all():
             if instance.password == password:

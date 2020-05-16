@@ -33,5 +33,3 @@ def StudentForm(request):
     if form.is_valid():
         return redirect('/')
     return render(request, 'st_pauls_school/student.html', {'form': form})
-
-
