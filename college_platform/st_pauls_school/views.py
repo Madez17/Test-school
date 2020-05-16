@@ -7,7 +7,7 @@ from .forms import TeacherForm, StudentForm
 def index(request):
     return render(request, 'st_pauls_school/index.html')
     
-# Teacher
+# Teacher Login
 def Teachers(request):
     form = TeacherForm(request.POST or None)
     # user_email = request.POST['email']
@@ -27,9 +27,14 @@ def TeacherDasboard(request):
     return render(request, 'st_pauls_school/tdashboard.html', {'test': test})
 
 
-# Student view
-def StudentForm(request):
+# Student Login
+def Students(request):
     form = StudentForm(request.POST or None)
     if form.is_valid():
-        return redirect('/')
+        return redirect('dashboard/')
     return render(request, 'st_pauls_school/student.html', {'form': form})
+
+# Student Dasboard view
+def StudentDasboard(request):
+    test = Student.objects.all()
+    return render(request, 'st_pauls_school/sdashboard.html', {'test': test})
